@@ -1,6 +1,3 @@
-/**
- * @type {import('gatsby').GatsbyConfig}
- */
 module.exports = {
   siteMetadata: {
     title: `My Gatsby Site`,
@@ -9,5 +6,14 @@ module.exports = {
   flags: {
 	DEV_SSR: true,
 },
-  plugins: [],
+  plugins: [
+	{
+		resolve: 'gatsby-source-filesystem',
+		options: {
+			path: `${__dirname}/src/data`,
+			name: 'data',
+		},
+	},
+	'gatsby-transformer-json',
+  ],
 }
