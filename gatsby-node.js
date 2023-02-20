@@ -41,11 +41,6 @@ exports.onPostBuild = ({ graphql }) => new Promise((resolve) => {
 						}
 					}
 				}
-				site {
-					siteMetadata {
-						siteUrl
-					}
-				}
 			}
 		`).then((result) => {
 			const shopify = result?.data?.shopify?.nodes;
@@ -94,7 +89,7 @@ exports.onPostBuild = ({ graphql }) => new Promise((resolve) => {
 						title,
 						description,
 						price: `${d?.price} ${item?.priceRangeV2?.minVariantPrice?.currencyCode}`,
-						link: `${result?.data?.site?.siteMetadata?.siteUrl}/products/${item?.handle}${createUrl(d?.selectedOptions[0]?.value, d?.selectedOptions[1]?.value)}`,
+						link: `https://www.vizcart.io/products/${item?.handle}${createUrl(d?.selectedOptions[0]?.value, d?.selectedOptions[1]?.value)}`,
 						image_link,
 						additional_image_link,
 						brand,
