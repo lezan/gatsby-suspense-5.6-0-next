@@ -6,16 +6,16 @@ exports.onPostBuild = ({ graphql }) => new Promise((resolve) => {
 	resolve(
 		graphql(`
 			query {
-				test: allDataJson {
+				shopify: allShopifyProduct {
 					nodes {
-						name
-						email
+						title
+						handle
 					}
 				}
 			}
 		`).then((result) => { 
 			console.log(result);
-			const header = Object.keys(result?.data?.test?.nodes[0]).map((d) => ({
+			const header = Object.keys(result?.data?.shopify?.nodes[0]).map((d) => ({
 				id: d,
 				title: d,
 			}));
@@ -25,7 +25,7 @@ exports.onPostBuild = ({ graphql }) => new Promise((resolve) => {
 				header,
 			});
 
-			csvWriter.writeRecords(result?.data?.test?.nodes);
+			csvWriter.writeRecords(result?.data?.shopify?.nodes);
 		}),
 	);
 });

@@ -1,3 +1,7 @@
+require('dotenv').config({
+	path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
   siteMetadata: {
     title: `My Gatsby Site`,
@@ -7,13 +11,15 @@ module.exports = {
 	DEV_SSR: true,
 },
   plugins: [
+	'gatsby-plugin-image',
 	{
-		resolve: 'gatsby-source-filesystem',
+		resolve: 'gatsby-source-shopify',
 		options: {
-			path: `${__dirname}/src/data`,
-			name: 'data',
+			password: process.env.SHOPIFY_ADMIN_ACCESS_TOKEN,
+			storeUrl: process.env.GATSBY_SHOPIFY_STORE_URL,
+			salesChannel: process.env.SHOPIFY_SALES_CHANNEL,
+			shopifyConnections: ['collections'],
 		},
 	},
-	'gatsby-transformer-json',
   ],
 }
