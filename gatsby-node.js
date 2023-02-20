@@ -1,6 +1,5 @@
-const { graphql } = require('gatsby');
-
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+const gpi = require('gatsby-plugin-image');
 
 exports.onPostBuild = ({ graphql }) => new Promise((resolve) => {
 	resolve(
